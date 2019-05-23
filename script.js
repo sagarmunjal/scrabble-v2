@@ -40,3 +40,55 @@ newGameButton = document.getElementById('new-game')
 newGameButton.onclick = () => {
         newGame()
 }  
+
+/*
+    Inside the new game function we have to take care of the following
+        - available array gets updated
+        - attempt array has to be updated
+        - 
+*/
+
+function newGame(){
+    attempt = [];
+    
+
+    // pick a game returns any one game locations
+    game = pickAGame();
+
+    // gnerate 7x7 table
+    generateTable('crossword', 7, 7, game[0]);
+
+    // generate a 1x6 table
+    generateTable('paletteAvailable', 1, 6);
+}
+
+
+
+function generateTable(id, rows, columns, positions){
+    let tableref = document.getElementById(id);
+    let tbl = [];
+   
+    let positionArr = []
+
+    if(positions){
+        for(var k =0; k<7; k++){
+            // follow hint positionArr in the end
+            positionArr.push(positions.split('',7))
+            positions = positions.substr(7)
+        }
+    }
+
+    for ( var i =1; i<= rows; i++) {
+        tbl.push("<tr>");
+            for (var j = 1 ; j<= columns; j++){
+                className = ''
+                if(positionArr.length > 0 && positionArr[i-1][j-1] == 'X'){
+                    className = 'hasLetter'
+                }
+                tbl.push(`<td data-table=${id} data-x=${j} data-y=${i} class="${className }">   </td>`)
+            }
+        tbl.push("</tr>")
+    }
+
+    tableref.innerHTML = tbl.join('');
+}
