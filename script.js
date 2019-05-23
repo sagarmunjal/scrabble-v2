@@ -61,6 +61,18 @@ function newGame(){
 
     // generate a 1x6 table
     generateTable('paletteAvailable', 1, 6);
+
+    // content 
+
+    available = words[gameId][0];
+    available = available.split('');
+    available = available.sort((a,b)=> {if(a>b) {return 1 }else if(a<b) {return -1 }else {return 0} } )
+    available = available.map(data =>{
+        return {
+            value:data,
+            available:true
+        }
+    })
 }
 
 
