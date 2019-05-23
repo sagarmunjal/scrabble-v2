@@ -106,10 +106,12 @@ function newGame(){
     /*================ handle submit button click ======================= */
     function attemptToSubmit(target){
         deleteButtonDOM = document.getElementById('delete')
-
+        
+        // we make the letter key disabled by adding a disabled class list
         // here we update the available array with its available key as false
         // we push value and target key to the attempt array
-
+        
+        target.classList.add(`disabledClick`);
         val = target.innerHTML
         available.forEach((data)=>{
             if(data.button == target){
