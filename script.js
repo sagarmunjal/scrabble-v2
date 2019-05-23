@@ -19,3 +19,17 @@
             "4,1,d", "3,2,a", "1,3,d", "1,5,a"] // game #2
     ];
 
+// declaring the data structures
+// attempt will store the attempts made by the user
+// whatever is left over will be updated in the available array
+// 
+
+attempt = [];
+available = [];
+filled = [];
+
+
+
+
+
+
