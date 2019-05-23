@@ -59,8 +59,9 @@ function newGame(){
     // gnerate 7x7 table
     generateTable('crossword', 7, 7, game[0]);
 
-    // generate a 1x6 table
+    // generate available and submit palette
     generateTable('paletteAvailable', 1, 6);
+    generateTable('paletteSubmit',1,7);
 
     // content 
 
@@ -73,47 +74,68 @@ function newGame(){
             available:true
         }
     })
+
+    setDataInAvailable('paletteAvailable', available);
 }
 
+// modules
+    /*================ set data in the palettes palette available  ======================= */
+    /* 
+        - it helps us to set data in available 
+        - update the data in available and attempt
+    */
 
-function pickAGame(){
-    do{
-        random = Math.floor(locations.length * Math.random())   
-    }while(random == gameId){
-        gameId = random
-        game = locations[random]
-        console.log(game);
-        return game;
-    }
-}
-
-
-
-function generateTable(id, rows, columns, positions){
-    let tableref = document.getElementById(id);
-    let tbl = [];
-   
-    let positionArr = []
-
-    if(positions){
-        for(var k =0; k<7; k++){
-            // follow hint positionArr in the end
-            positionArr.push(positions.split('',7))
-            positions = positions.substr(7)
-        }
+    function setDataInAvailable(id,content){
+        setContent("paletteAvailable",available);
     }
 
-    for ( var i =1; i<= rows; i++) {
-        tbl.push("<tr>");
-            for (var j = 1 ; j<= columns; j++){
-                className = ''
-                if(positionArr.length > 0 && positionArr[i-1][j-1] == 'X'){
-                    className = 'hasLetter'
-                }
-                tbl.push(`<td data-table=${id} data-x=${j} data-y=${i} class="${className }">   </td>`)
+    /*================ set content  ======================= */
+    function setContent(id,content, direction='a', startx=1, starty=1){
+
+        // letter boxes will be filled using the data generated below
+
+        
+
+    }
+
+    /*================ to pick one game  ======================= */
+        function pickAGame(){
+            do{
+                random = Math.floor(locations.length * Math.random())   
+            }while(random == gameId){
+                gameId = random
+                game = locations[random]
+                console.log(game);
+                return game;
             }
-        tbl.push("</tr>")
-    }
+        }
 
-    tableref.innerHTML = tbl.join('');
-}
+    /*================ generate tables   ======================= */
+        function generateTable(id, rows, columns, positions){
+            let tableref = document.getElementById(id);
+            let tbl = [];
+        
+            let positionArr = []
+
+            if(positions){
+                for(var k =0; k<7; k++){
+                    // follow hint positionArr in the end
+                    positionArr.push(positions.split('',7))
+                    positions = positions.substr(7)
+                }
+            }
+    
+            for ( var i =1; i<= rows; i++) {
+                tbl.push("<tr>");
+                    for (var j = 1 ; j<= columns; j++){
+                        className = ''
+                        if(positionArr.length > 0 && positionArr[i-1][j-1] == 'X'){
+                            className = 'hasLetter'
+                        }
+                        tbl.push(`<td data-table=${id} data-x=${j} data-y=${i} class="${className }">   </td>`)
+                    }
+                tbl.push("</tr>")
+            }
+
+            tableref.innerHTML = tbl.join('');
+        }
