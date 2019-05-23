@@ -112,6 +112,7 @@ function newGame(){
         // we push value and target key to the attempt array
         
         target.classList.add(`disabledClick`);
+        target.removeEventListener(`click`,handleSubmit);
         val = target.innerHTML
         available.forEach((data)=>{
             if(data.button == target){
@@ -162,14 +163,7 @@ function newGame(){
         // along with filling the data we also the 
         letterBoxesData.forEach(function(letterBoxData){
             var letterBoxesDOM = document.querySelectorAll(`[data-table='${id}'][data-x='${letterBoxData.x}'][data-y='${letterBoxData.y}']`)
-
-            if( letterBoxData.available == false ){
-                letterBoxesDOM[0].classList.add('disabledClick');
-                letterBoxesDOM[0].removeEventListener('click',handleButtonClick)
-            }
             letterBoxesDOM[0].innerHTML = letterBoxData.val;
-            
-
         })
 
     }
