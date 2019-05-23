@@ -127,6 +127,7 @@ function newGame(){
         }
         console.log(available)
         console.log(attempt)
+        setContent('paletteSubmit', attempt)
     }
 
 
