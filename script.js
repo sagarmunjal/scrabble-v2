@@ -18,6 +18,7 @@
         ["xxxXxxxxxXXXXxXxxXxxxXxxXxxxXXXXxxxxxxXxxxxxxxxxx",
             "4,1,d", "3,2,a", "1,3,d", "1,5,a"] // game #2
     ];
+    var gameId;
 
 // declaring the data structures
 // attempt will store the attempts made by the user
@@ -60,6 +61,18 @@ function newGame(){
 
     // generate a 1x6 table
     generateTable('paletteAvailable', 1, 6);
+}
+
+
+function pickAGame(){
+    do{
+        random = Math.floor(locations.length * Math.random())   
+    }while(random == gameId){
+        gameId = random
+        game = locations[random]
+        console.log(game);
+        return game;
+    }
 }
 
 
