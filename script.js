@@ -87,8 +87,23 @@ function newGame(){
 
     function setDataInAvailable(id,content){
         setContent("paletteAvailable",available);
-    }
+        
+        // now here we will make the button clickable and tie it to an event listener
+        var count = 0;
+        availableDOM = document.querySelectorAll(`[data-table=paletteAvailable]`)
+        available.forEach(function(unit){
+            unit.button = availableDOM[count++]
+        })
 
+        available.forEach(function(unit){
+            unit.button.addEventListener('click',handleSubmit)
+        })
+        
+    }
+    /*================ handle submit  ======================= */
+    function handleSubmit(){
+        console.log(`write functionality to submit`)
+    }
 
     /*================ set content  ======================= */
     function setContent(id,content, direction='a', startx=1, starty=1){
