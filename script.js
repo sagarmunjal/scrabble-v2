@@ -22,7 +22,8 @@
 // declaring the data structures
 // attempt will store the attempts made by the user
 // whatever is left over will be updated in the available array
-// 
+// filled will hold the entire word submitted by the user, 
+// that will be then compared with the possible anagrams available in the words array.
 
 attempt = [];
 available = [];
@@ -30,6 +31,12 @@ filled = [];
 
 
 
+/* 
+    initiating the application
+    We get the DOM element by using getElementById and store it in a variable 
+*/
 
-
-
+newGameButton = document.getElementById('new-game')
+newGameButton.onclick = () => {
+        newGame()
+}  
