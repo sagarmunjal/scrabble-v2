@@ -105,6 +105,8 @@ function newGame(){
 
     /*================ handle submit button click ======================= */
     function attemptToSubmit(target){
+        deleteButtonDOM = document.getElementById('delete')
+
         // here we update the available array with its available key as false
         // we push value and target key to the attempt array
 
@@ -115,9 +117,21 @@ function newGame(){
                 attempt.push({value:val,target:data.button})
             }
         })
+        // activate delete button and add button handlers
+        if(attempt.length>0){
+            document.getElementById('delete').classList.remove('disabledClick');
+            deleteButtonDOM.addEventListener('click', handleDeleteClick);
+        }
         console.log(available)
         console.log(attempt)
     }
+
+
+    /*================ handle delete button ======================= */
+    function handleDeleteClick (){
+        console.log(`you forgot to write functionality for clicking the delete button`)
+    }
+
 
     /*================ set content  ======================= */
     function setContent(id,content, direction='a', startx=1, starty=1){
