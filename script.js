@@ -89,12 +89,43 @@ function newGame(){
         setContent("paletteAvailable",available);
     }
 
+
     /*================ set content  ======================= */
     function setContent(id,content, direction='a', startx=1, starty=1){
 
         // letter boxes will be filled using the data generated below
-
+        var letterBoxesData = content.map((letter)=>{
+            return {
+                x: (() => {
+                    if(direction == 'a')
+                        return startx++
+                    else
+                        return startx
+                })(),
+                y: (() => {
+                    if(direction == 'd')
+                        return starty++
+                    else
+                        return starty 
+                })(),
+                val: letter.value,
+                available: letter.available,
+            }
+        })
         
+        // filling this data in the DOM 
+        // along with filling the data we also the 
+        letterBoxesData.forEach(function(letterBoxData){
+            var letterBoxesDOM = document.querySelectorAll(`[data-table='${id}'][data-x='${letterBoxData.x}'][data-y='${letterBoxData.y}']`)
+
+            if( letterBoxData.available == false ){
+                letterBoxesDOM[0].classList.add('disabledClick');
+                letterBoxesDOM[0].removeEventListener('click',handleButtonClick)
+            }
+            letterBoxesDOM[0].innerHTML = letterBoxData.val;
+            
+
+        })
 
     }
 
