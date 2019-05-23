@@ -133,7 +133,22 @@ function newGame(){
 
     /*================ handle delete button ======================= */
     function handleDeleteClick (){
-        console.log(`you forgot to write functionality for clicking the delete button`)
+        deleteButton = document.getElementById('delete')
+
+        let popped = attempt.pop();
+        available.forEach((data)=>{
+            if(data.button == popped.target){
+                data.available = true
+            }
+        })
+        if(attempt.length == 0){
+            // disbale delete button
+            document.getElementById('delete').classList.add('disabledClick');
+            deleteButton.removeEventListener('click', handleDeleteClick);
+        }
+        // before we re-fill our submit palette we need to clear it
+        clearPalettes(`paletteSubmit`);
+        setContent('paletteSubmit', attempt)
     }
 
 
@@ -167,6 +182,17 @@ function newGame(){
             letterBoxesDOM[0].innerHTML = letterBoxData.val;
         })
 
+    }
+
+    /*================ clear palettes  ======================= */
+    function clearPalettes(id){
+        if(id=="paletteSubmit"){
+            for(let i=0;i<6;i++){
+                cell = document.querySelectorAll(`[data-table="${id}"][data-x='${i+1}'][data-y='1']`);
+                cell[0].innerHTML = '';
+                console.log(cell[0]);
+            }
+        }
     }
 
     /*================ to pick one game  ======================= */
