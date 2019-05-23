@@ -51,8 +51,6 @@ newGameButton.onclick = () => {
 
 function newGame(){
     attempt = [];
-    
-
     // pick a game returns any one game locations
     game = pickAGame();
 
@@ -100,9 +98,25 @@ function newGame(){
         })
         
     }
-    /*================ handle submit  ======================= */
-    function handleSubmit(){
-        console.log(`write functionality to submit`)
+    /*================ handle submit button click ======================= */
+    function handleSubmit(e){
+        attemptToSubmit(e.target);
+    }
+
+    /*================ handle submit button click ======================= */
+    function attemptToSubmit(target){
+        // here we update the available array with its available key as false
+        // we push value and target key to the attempt array
+
+        val = target.innerHTML
+        available.forEach((data)=>{
+            if(data.button == target){
+                data.available = false
+                attempt.push({value:val,target:data.button})
+            }
+        })
+        console.log(available)
+        console.log(attempt)
     }
 
     /*================ set content  ======================= */
