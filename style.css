@@ -1,0 +1,37 @@
+table{
+    width: 292px;
+}
+table, tr, td {
+    border : 1px solid black;
+}
+td {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    /* background-color: green; */
+}
+#mybutton {
+    border: 1px solid #ddd;
+}
+.hasLetter {
+    background-color: #7CE580 !important;
+}
+.nextLetter {
+    background-color: #f38888 !important;
+}
+.disabledClick {
+    background-color: #ddd !important;
+}
+#new-game{
+    background-color: green;
+}
+#shuffle{
+    background-color: orange;
+}
+#place{
+    background-color: olivedrab;
+}
+
+#delete {
+    background-color: red;
+}
