@@ -139,6 +139,8 @@ function newGame(){
         available.forEach((data)=>{
             if(data.button == popped.target){
                 data.available = true
+                data.button.classList.remove('disabledClick');
+                data.button.addEventListener(`click`,handleSubmit);
             }
         })
         if(attempt.length == 0){
